@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+using UnityEngine.InputSystem;
+public class MouvementPlayerController : MonoBehaviour
 {
     // Vitesse de déplacement du personnage
+
+     //[SerializeField] Vector3 direction;
     public float moveSpeed = 5f;
 
     // Référence au Rigidbody pour appliquer la physique
@@ -15,14 +17,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+  
         // Récupère la référence au Rigidbody attaché au personnage
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+  
         // Récupère les entrées de l'utilisateur pour le déplacement
-        float horizontal = Input.GetAxis("Horizontal"); // A, D ou flèches gauche/droite
+       float horizontal = Input.GetAxis("Horizontal"); // A, D ou flèches gauche/droite
         
         float vertical = Input.GetAxis("Vertical"); // W, S ou flèches haut/bas
 
@@ -36,5 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         // Déplace le personnage en fonction de la direction et de la vitesse
         rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        
     }
 }

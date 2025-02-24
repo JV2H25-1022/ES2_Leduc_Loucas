@@ -1745,6 +1745,11 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7165430295591806332, guid: 20c0aa25022fd474ebac164d517acaa3,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 8298684462619277302, guid: 20c0aa25022fd474ebac164d517acaa3,
         type: 3}
       propertyPath: m_Name
@@ -1817,7 +1822,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8298684462619277302, guid: 20c0aa25022fd474ebac164d517acaa3,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8632670369948054863}
+      addedObject: {fileID: 8632670369948054867}
   m_SourcePrefab: {fileID: 100100000, guid: 20c0aa25022fd474ebac164d517acaa3, type: 3}
 --- !u!4 &8632670369948054854 stripped
 Transform:
@@ -1868,7 +1873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97aa9ab13e3f10743b9f279e950bb923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8632670369948054863
+--- !u!114 &8632670369948054867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
