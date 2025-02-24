@@ -4,42 +4,46 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class MouvementPlayerController : MonoBehaviour
 {
-    // Vitesse de déplacement du personnage
-
-     //[SerializeField] Vector3 direction;
-    public float moveSpeed = 5f;
-
-    // Référence au Rigidbody pour appliquer la physique
-    private Rigidbody rb;
-
-    // Direction du déplacement
-    private Vector3 moveDirection;
-
-    void Start()
+    [SerializeField]
+    private Vector3 deplacement;
+    [SerializeField]
+    private Vector3 deplacementVertical;
+    private SousMarinControl sousMarinControl;
+    private Rigidbody rb_;
+    private void Awake()
     {
-  
-        // Récupère la référence au Rigidbody attaché au personnage
-        rb = GetComponent<Rigidbody>();
+     sousMarinControl = new SousMarinControl();
+
+     sousMarinControl.Player.Mouvement.performed += LireDeplacement;
+    sousMarinControl.Player.Mouvement.canceled += LireDeplacement;
+
     }
 
-    void Update()
+
+
+
+
+
+    private void LireDeplacement(InputAction.CallbackContext context)
     {
-  
-        // Récupère les entrées de l'utilisateur pour le déplacement
-       float horizontal = Input.GetAxis("Horizontal"); // A, D ou flèches gauche/droite
-        
-        float vertical = Input.GetAxis("Vertical"); // W, S ou flèches haut/bas
-
-
-
-        // Calcul de la direction de mouvement
-        moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
+        deplacement = context.ReadValue<Vector3>();
+    }
+    private void OnEnable()
+    {
+        sousMarinControl.Player.Enable();
     }
 
-    void FixedUpdate()
+    private void OnDisable()
     {
-        // Déplace le personnage en fonction de la direction et de la vitesse
-        rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
-        
+        sousMarinControl.Player.Disable();
     }
+
+ void Start()
+ {
+
+ }
+  void Update()
+ {
+rb_.Translate(deplacement, x.Local);
+ }
 }

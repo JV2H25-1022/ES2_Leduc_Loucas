@@ -60,7 +60,7 @@ public partial class @Sous_marin_control: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""3D Vector"",
-                    ""id"": ""252e044d-9320-4e91-b448-6acdc8db928b"",
+                    ""id"": ""ac5790f2-53d6-4f3a-b716-3ec37790ee5e"",
                     ""path"": ""3DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -71,7 +71,7 @@ public partial class @Sous_marin_control: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""5498bf70-e090-41ab-94a1-3ad758c58aeb"",
+                    ""id"": ""b91c2331-f199-457d-a7bd-9e032039a7af"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -82,7 +82,7 @@ public partial class @Sous_marin_control: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""f5229a42-7603-4549-8c38-4b07aeb8b6ef"",
+                    ""id"": ""0f224765-cde1-49b0-88cd-98d93942e485"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -93,7 +93,7 @@ public partial class @Sous_marin_control: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""forward"",
-                    ""id"": ""1c3b47b6-5938-4f85-8635-072c0ce42435"",
+                    ""id"": ""b2c51e5b-48be-45f8-bbfc-693fe4b8c206"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -104,7 +104,7 @@ public partial class @Sous_marin_control: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""backward"",
-                    ""id"": ""c3213ea3-0be6-4da0-b987-bde1142cf03d"",
+                    ""id"": ""8aa939e9-a422-416e-b99a-865cba8918de"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
