@@ -2,32 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class MouvementPlayerController : MonoBehaviour
 {
     [SerializeField]
     private Vector3 deplacement;
     [SerializeField]
-    private Vector3 deplacementVertical;
+    //private Vector3 deplacementVertical;
     private SousMarinControl sousMarinControl;
     private Rigidbody rb_;
+
+    public float vitesse = 5f; // Vitesse de déplacement
+
     private void Awake()
     {
-     sousMarinControl = new SousMarinControl();
+        sousMarinControl = new SousMarinControl();
 
-     sousMarinControl.Player.Mouvement.performed += LireDeplacement;
-    sousMarinControl.Player.Mouvement.canceled += LireDeplacement;
-
+        sousMarinControl.Player.Mouvement.performed += LireDeplacement;
+        sousMarinControl.Player.Mouvement.canceled += LireDeplacement;
     }
 
-
-
-
-
-
-    private void LireDeplacement(InputAction.CallbackContext context)
-    {
-        deplacement = context.ReadValue<Vector3>();
-    }
     private void OnEnable()
     {
         sousMarinControl.Player.Enable();
@@ -38,12 +32,32 @@ public class MouvementPlayerController : MonoBehaviour
         sousMarinControl.Player.Disable();
     }
 
- void Start()
- {
+    void Start()
+    {
+        rb_ = GetComponent<Rigidbody>();
+    }
 
- }
-  void Update()
- {
-rb_.Translate(deplacement, x.Local);
- }
+    private void LireDeplacement(InputAction.CallbackContext context)
+    {
+        deplacement = context.ReadValue<Vector3>();
+    }
+
+    void Update()
+    {
+        if (rb_ == null)
+        {
+            Debug.LogError("Rigidbody component is missing");
+            return;
+        }
+
+        if (sousMarinControl == null)
+        {
+            Debug.LogError("SousMarinControl class is missing");
+            return;
+        }
+
+        Vector3 mouvement = new Vector3(deplacement.x, deplacement.y, deplacement.z);
+        Debug.Log("Movement input: " + mouvement);
+        rb_.MovePosition(rb_.position + mouvement * vitesse * Time.deltaTime);
+    }
 }
