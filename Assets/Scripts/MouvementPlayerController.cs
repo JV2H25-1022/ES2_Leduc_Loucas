@@ -13,7 +13,11 @@ public class MouvementPlayerController : MonoBehaviour
     private Rigidbody rb_;
 
     public float vitesse = 5f; // Vitesse de déplacement
+     public float sprintVitesse = 10f;
 
+     public float walkVitesse = 5f;
+
+     public bool isSprintOn = false;
     private void Awake()
     {
         sousMarinControl = new SousMarinControl();
@@ -30,6 +34,11 @@ public class MouvementPlayerController : MonoBehaviour
     private void OnDisable()
     {
         sousMarinControl.Player.Disable();
+    }
+
+    private void OnSprint()
+    {
+        vitesse = sprintVitesse;
     }
 
     void Start()

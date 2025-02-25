@@ -21,6 +21,13 @@ public class Sousmarin : MonoBehaviour
         _animator.SetFloat("Deplacement", directionInput.magnitude);
 
     }
+      void OnMouvement2(InputValue directionBase)
+    {
+        Vector3 directionInput = directionBase.Get<Vector3>();
+
+        _animator.SetFloat("Deplacement", directionInput.magnitude);
+
+    }
 }
 
 
