@@ -1855,7 +1855,19 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f87f72d-2f36-428a-932a-70a831cbd5d7
+    m_ActionName: Player/Mouvement[/Keyboard/q,/Keyboard/e,/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 518027d7-15aa-40cc-8317-299d87c97bf4
+    m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14de4953-9f3d-4a46-a227-f20220ab2c5e
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1887,6 +1899,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deplacement: {x: 0, y: 0, z: 0}
   vitesse: 5
+  sprintVitesse: 10
+  walkVitesse: 5
+  isSprintOn: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
