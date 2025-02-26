@@ -38,7 +38,10 @@ public class MouvementPlayerController : MonoBehaviour
 
     private void OnSprint()
     {
-        vitesse = sprintVitesse;
+        if(){
+               vitesse = sprintVitesse;
+        }
+     
     }
 
     void Start()
