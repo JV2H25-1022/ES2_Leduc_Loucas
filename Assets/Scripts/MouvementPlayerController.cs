@@ -7,17 +7,15 @@ public class MouvementPlayerController : MonoBehaviour
 {
     [SerializeField]
     private Vector3 deplacement;
-    [SerializeField]
-    //private Vector3 deplacementVertical;
     private SousMarinControl sousMarinControl;
     private Rigidbody rb_;
 
-    public float vitesse = 5f; // Vitesse de déplacement
-     public float sprintVitesse = 10f;
+    public float vitesse = 5f; 
+    public float sprintVitesse = 10f;
+    public float walkVitesse = 5f; 
 
-     public float walkVitesse = 5f;
-
-     public bool isSprintOn = false;
+    private float currentVitesse; 
+   
 
     private void Awake()
     {
@@ -26,8 +24,8 @@ public class MouvementPlayerController : MonoBehaviour
         sousMarinControl.Player.Mouvement.performed += LireDeplacement;
         sousMarinControl.Player.Mouvement.canceled += LireDeplacement;
 
-       sousMarinControl.Player.Sprint.performed += ActiverSprint;
-       sousMarinControl.Player.Sprint.canceled += DesactiverSprint;
+        sousMarinControl.Player.Sprint.performed += OnSprint;
+        sousMarinControl.Player.Sprint.canceled += OnSprint; 
     }
 
     private void OnEnable()
@@ -40,24 +38,30 @@ public class MouvementPlayerController : MonoBehaviour
         sousMarinControl.Player.Disable();
     }
 
-private void ActiverSprint(InputAction.CallbackContext context)
-{
-    // Dès que l'utilisateur appuie sur Shift, on active le sprint
-    vitesse = sprintVitesse;
-    
-}
+  
+    private void OnSprint(InputAction.CallbackContext context)
+    {
+      
+        bool isSprinting = context.ReadValue<float>() > 0.5f;
 
-private void DesactiverSprint(InputAction.CallbackContext context)
-{
-    // Dès que l'utilisateur relâche Shift, on rétablit la vitesse normale
-    vitesse = walkVitesse;
- 
-}
-
+        if (isSprinting)
+        {
+          
+            Debug.Log("Sprint activé");
+            currentVitesse = Mathf.Lerp(currentVitesse, sprintVitesse, smoothTime);
+        }
+        else
+        {
+            
+            Debug.Log("Sprint désactivé");
+            currentVitesse = Mathf.Lerp(currentVitesse, walkVitesse, smoothTime);
+        }
+    }
 
     void Start()
     {
         rb_ = GetComponent<Rigidbody>();
+        currentVitesse = walkVitesse; 
     }
 
     private void LireDeplacement(InputAction.CallbackContext context)
@@ -79,8 +83,11 @@ private void DesactiverSprint(InputAction.CallbackContext context)
             return;
         }
 
+        // Calcul du mouvement avec la vitesse actuelle (qui peut changer en fonction du sprint)
         Vector3 mouvement = new Vector3(deplacement.x, deplacement.y, deplacement.z);
         Debug.Log("Movement input: " + mouvement);
-        rb_.MovePosition(rb_.position + mouvement * vitesse * Time.deltaTime);
+
+        // Déplacement du sous-marin avec la vitesse actuelle
+        rb_.MovePosition(rb_.position + mouvement * currentVitesse * Time.deltaTime);
     }
 }
