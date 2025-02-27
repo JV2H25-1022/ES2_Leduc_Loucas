@@ -18,12 +18,16 @@ public class MouvementPlayerController : MonoBehaviour
      public float walkVitesse = 5f;
 
      public bool isSprintOn = false;
+
     private void Awake()
     {
         sousMarinControl = new SousMarinControl();
 
         sousMarinControl.Player.Mouvement.performed += LireDeplacement;
         sousMarinControl.Player.Mouvement.canceled += LireDeplacement;
+
+       sousMarinControl.Player.Sprint.performed += ActiverSprint;
+       sousMarinControl.Player.Sprint.canceled += DesactiverSprint;
     }
 
     private void OnEnable()
@@ -36,13 +40,20 @@ public class MouvementPlayerController : MonoBehaviour
         sousMarinControl.Player.Disable();
     }
 
-    private void OnSprint()
-    {
-        if(){
-               vitesse = sprintVitesse;
-        }
-     
-    }
+private void ActiverSprint(InputAction.CallbackContext context)
+{
+    // Dès que l'utilisateur appuie sur Shift, on active le sprint
+    vitesse = sprintVitesse;
+    
+}
+
+private void DesactiverSprint(InputAction.CallbackContext context)
+{
+    // Dès que l'utilisateur relâche Shift, on rétablit la vitesse normale
+    vitesse = walkVitesse;
+ 
+}
+
 
     void Start()
     {
