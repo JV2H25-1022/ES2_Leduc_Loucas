@@ -1901,7 +1901,6 @@ MonoBehaviour:
   vitesse: 5
   sprintVitesse: 10
   walkVitesse: 5
-  isSprintOn: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

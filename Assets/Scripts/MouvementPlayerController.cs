@@ -15,7 +15,6 @@ public class MouvementPlayerController : MonoBehaviour
     public float walkVitesse = 5f; 
 
     private float currentVitesse; 
-   
 
     private void Awake()
     {
@@ -38,23 +37,19 @@ public class MouvementPlayerController : MonoBehaviour
         sousMarinControl.Player.Disable();
     }
 
-  
     private void OnSprint(InputAction.CallbackContext context)
     {
-      
         bool isSprinting = context.ReadValue<float>() > 0.5f;
 
         if (isSprinting)
         {
-          
             Debug.Log("Sprint activé");
-            currentVitesse = Mathf.Lerp(currentVitesse, sprintVitesse, smoothTime);
+            currentVitesse = sprintVitesse;
         }
         else
         {
-            
             Debug.Log("Sprint désactivé");
-            currentVitesse = Mathf.Lerp(currentVitesse, walkVitesse, smoothTime);
+            currentVitesse = walkVitesse;
         }
     }
 
@@ -79,8 +74,14 @@ public class MouvementPlayerController : MonoBehaviour
 
         if (sousMarinControl == null)
         {
-            Debug.LogError("SousMarinControl class is missing");
+            Debug.Log("SousMarinControl class is missing");
             return;
+        }
+
+        float speed = currentVitesse;
+        if (Keyboard.current.shiftKey.isPressed)
+        {
+            speed *= 2;
         }
 
         // Calcul du mouvement avec la vitesse actuelle (qui peut changer en fonction du sprint)
@@ -88,6 +89,6 @@ public class MouvementPlayerController : MonoBehaviour
         Debug.Log("Movement input: " + mouvement);
 
         // Déplacement du sous-marin avec la vitesse actuelle
-        rb_.MovePosition(rb_.position + mouvement * currentVitesse * Time.deltaTime);
+        rb_.MovePosition(rb_.position + mouvement * speed * Time.deltaTime);
     }
 }
